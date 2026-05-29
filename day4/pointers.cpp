@@ -10,7 +10,7 @@ int main(){
     cout<<"value at address ptr:"<<*ptr<<endl;
     *ptr = 100;
     cout<<"x after *ptr = 100:"<<x<< endl;
-    int *nullptr=nullptr;
+    int *ptr2=nullptr;
     return 0;
 }
 
