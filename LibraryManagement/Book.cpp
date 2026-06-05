@@ -5,10 +5,10 @@ using namespace std;
 
 Book::Book() : id(0), title("N/A"), author("N/A"), year(0), isIssued(false) {}
 
-Book::Book(int id, string t, string a, int y) 
-    : id(id), title(t), author(a), year(y), isIssued(false) {}
+Book::Book(int id, string t, string a, int y)
+     :id(id), title(t), author(a), year(y), isIssued(false) {}
 
-int Book::getId() const { return id; }
+int Book::getID() const { return id; }
 string Book::getTitle() const { return title; }
 string Book::getAuthor() const { return author; }
 int Book::getYear() const { return year; }
@@ -47,20 +47,20 @@ void Book::display() const {
 }
 
 string Book::toFileString() const {
-    return to_string(id) + "|" + title + "|" + author + "|" + 
+    return to_string(id) + "|" + title + "|" + author + "|" +
            to_string(year) + "|" + (isIssued ? "1" : "0");
 }
 
 Book Book::fromFileString(const string& line) {
-    stringstream ss(line);
+    stringstream ss (line);
     string token;
-    
+
     getline(ss, token, '|'); int id = stoi(token);
     getline(ss, token, '|'); string title = token;
     getline(ss, token, '|'); string author = token;
     getline(ss, token, '|'); int year = stoi(token);
     getline(ss, token, '|'); bool issued = (token == "1");
-    
+
     Book book(id, title, author, year);
     if (issued) book.issue();
     return book;

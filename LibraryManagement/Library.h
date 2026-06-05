@@ -6,24 +6,23 @@
 
 class Library {
     private:
-        vector<Book> books;
-        string filename;
-        
-        void loadFromFile();
-        void saveToFile();
-    
-    public:
-        Library(const string& file = "books.txt");
-        
-        void addBook(const Book& book);
-        void removeBook(int id);
-        void issueBook(int id);
-        void returnBook(int id);
-        void searchByTitle(const string& title) const;
-        void searchByAuthor(const string& author) const;
-        void displayAllBooks() const;
-        void displayAvailableBooks() const;
-        void displayIssuedBooks() const;
-};
+    vector<Book> books;
+    string filename;
 
+    void loadFromFile();
+    void saveToFile();
+
+    public:
+    Library(const string& file = "books.txt");
+
+    void addBook(const Book& book);
+    void removeBook(int id);
+    void issueBook(int id);
+    void returnBook(int id);
+    void searchByTitle(const string& title) const;
+    void searchByAuthor(const string& author) const;
+    void displayAllBooks() const;
+    void displayAvailableBooks() const;
+    void displayIssuedBooks() const;
+};
 #endif

@@ -1,6 +1,7 @@
 #include "Library.h"
 #include <fstream>
 #include <algorithm>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -41,7 +42,7 @@ void Library::saveToFile() {
 void Library::addBook(const Book& book) {
     // Check for duplicate ID
     for (const auto& b : books) {
-        if (b.getId() == book.getId()) {
+        if (b.getID() == book.getID()) {
             throw invalid_argument("Book with this ID already exists!");
         }
     }
@@ -52,7 +53,7 @@ void Library::addBook(const Book& book) {
 
 void Library::removeBook(int id) {
     auto it = remove_if(books.begin(), books.end(),
-        [id](const Book& b) { return b.getId() == id; });
+        [id](const Book& b) { return b.getID() == id; });
     
     if (it == books.end()) {
         throw invalid_argument("Book not found!");
@@ -65,8 +66,7 @@ void Library::removeBook(int id) {
 
 void Library::issueBook(int id) {
     for (auto& book : books) {
-        if (book.getId() == id) {
-            book.issue();
+        if (book.getID() == id) {
             saveToFile();
             cout << "Book issued successfully!" << endl;
             return;
@@ -77,7 +77,7 @@ void Library::issueBook(int id) {
 
 void Library::returnBook(int id) {
     for (auto& book : books) {
-        if (book.getId() == id) {
+        if (book.getID() == id) {
             book.returnBook();
             saveToFile();
             cout << "Book returned successfully!" << endl;
@@ -95,7 +95,7 @@ void Library::searchByTitle(const string& title) const {
     
     bool found = false;
     for (const auto& book : books) {
-        // Case-insensitive search               
+        // Case-insensitive search
         string bookTitle = book.getTitle();
         string searchTitle = title;
         transform(bookTitle.begin(), bookTitle.end(), bookTitle.begin(), ::tolower);
